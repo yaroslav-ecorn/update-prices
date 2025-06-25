@@ -1,0 +1,7 @@
+{
+  "name": "jointree",
+  "type": "module",
+  "dependencies": {
+    "node-xlsx": "^0.24.0"
+  }
+}
