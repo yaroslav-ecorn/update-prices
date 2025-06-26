@@ -67,10 +67,6 @@ async function generateOutputFiles() {
 
     const outputProductsArray = []
     productsArray.map((productObject, index) => {
-        if (index > 9) {
-            return;
-        }
-
         const productArray = [];
 
         Object.keys(outputHeaders).forEach(headerKey => {
