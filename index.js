@@ -35,7 +35,14 @@ const outputHeaders = {
     "Variant Inventory Qty": {
         handle: "stock"
     },
-
+    "Variant Weight": {
+        "handle": "",
+        "value": "5"
+    },
+    "Variant Weight Unit": {
+      "handle": "",
+        "value": "g"
+    },
     "Variant Inventory Tracker": {
         handle: "",
         value: "shopify"
@@ -53,6 +60,9 @@ const outputHeaders = {
         handle: "strain"
     },
     "Metafield: properties.genetics [single_line_text_field]": {
+        handle: "genetics"
+    },
+    "Metafield: limits.include_to_limit [boolean]": {
         handle: "genetics"
     }
 }
