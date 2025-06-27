@@ -63,7 +63,8 @@ const outputHeaders = {
         handle: "genetics"
     },
     "Metafield: limits.include_to_limit [boolean]": {
-        handle: "genetics"
+        handle: "",
+        value: "TRUE"
     }
 }
 
