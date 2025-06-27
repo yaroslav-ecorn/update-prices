@@ -87,7 +87,7 @@ async function generateOutputFiles() {
             }
 
             if (outputHeaders[headerKey].option === "plus") {
-                const result = productObject[outputHeaders[headerKey].handle] + productObject[outputHeaders[headerKey].handle] * Number(`0.${productObject[outputHeaders[headerKey].plusWith]}`)
+                const result = 5 * (productObject[outputHeaders[headerKey].handle] + productObject[outputHeaders[headerKey].handle] * Number(`0.${productObject[outputHeaders[headerKey].plusWith]}`))
                 productArray.push(Math.round(result * 100) / 100)
                 return
             }
