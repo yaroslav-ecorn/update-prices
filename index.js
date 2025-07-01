@@ -18,11 +18,6 @@ const outputHeaders = {
         value: "",
         handle: "name"
     },
-    "Image Src": {
-        handle: "itemimg1",
-        option: "combine",
-        combineWith: "itemimg2"
-    },
     "Variant Price": {
         handle: "price",
         option: "plus",
