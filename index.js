@@ -10,13 +10,18 @@ const outputHeaders = {
         value: "MERGE",
         handle: ""
     },
-    "Status": {
-        value: "Active",
-        handle: ""
-    },
     "Title": {
         value: "",
         handle: "name"
+    },
+    "Option1 Name": {
+        handle: "",
+        value: "Apotheke"
+    },
+    "Option1 Value": {
+        handle: "",
+        option1: "Сannovia",
+        option2: "Hubertus",
     },
     "Variant Price": {
         handle: "price",
@@ -73,30 +78,46 @@ async function generateOutputFiles() {
 
     const outputProductsArray = []
     productsArray.map((productObject, index) => {
-        const productArray = [];
+        if (index > 0) {
+            return
+        }
+        for (let i = 0; i < 2; i++) {
+            const productArray = [];
 
-        Object.keys(outputHeaders).forEach(headerKey => {
-            if (outputHeaders[headerKey].handle === "") {
-                productArray.push(outputHeaders[headerKey].value)
-                return;
-            }
+            Object.keys(outputHeaders).forEach(headerKey => {
+                if (headerKey === "Variant Inventory Qty" && i > 0) {
+                    productArray.push("0")
+                    return;
+                }
 
-            if (outputHeaders[headerKey].option === "plus") {
-                const result = 5 * (productObject[outputHeaders[headerKey].handle] + productObject[outputHeaders[headerKey].handle] * Number(`0.${productObject[outputHeaders[headerKey].plusWith]}`))
-                productArray.push(Math.round(result * 100) / 100)
-                return
-            }
+                if (headerKey === "Option1 Value") {
+                    const valueKey = `option${i + 1}`
+                    productArray.push(outputHeaders[headerKey][valueKey])
+                    return;
+                }
 
-            if (outputHeaders[headerKey].option === "combine") {
-                const result = `${productObject[outputHeaders[headerKey].handle]};${productObject[outputHeaders[headerKey].combineWith]}`
-                productArray.push(result)
-                return
-            }
+                if (outputHeaders[headerKey].handle === "") {
+                    productArray.push(outputHeaders[headerKey].value)
+                    return;
+                }
 
-            productArray.push(productObject[outputHeaders[headerKey].handle])
-        })
+                if (outputHeaders[headerKey].option === "plus") {
+                    const result = 5 * (productObject[outputHeaders[headerKey].handle] + productObject[outputHeaders[headerKey].handle] * Number(`0.${productObject[outputHeaders[headerKey].plusWith]}`))
+                    productArray.push(Math.round(result * 100) / 100)
+                    return
+                }
 
-        outputProductsArray.push(productArray)
+                if (outputHeaders[headerKey].option === "combine") {
+                    const result = `${productObject[outputHeaders[headerKey].handle]};${productObject[outputHeaders[headerKey].combineWith]}`
+                    productArray.push(result)
+                    return
+                }
+
+                productArray.push(productObject[outputHeaders[headerKey].handle])
+            })
+
+            outputProductsArray.push(productArray)
+        }
     })
 
     const outputProducts = [
